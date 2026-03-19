@@ -1,0 +1,17 @@
+streamlit
+transformers
+sentence-transformers
+scikit-learn
+PyPDF2
+nltk
+plotly
+pandas
+faiss-cpu
+torch
+numpy
+google-generativeai
+Pillow
+pytesseract
+pdf2image
+psutil
+pytest
