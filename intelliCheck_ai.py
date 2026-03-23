@@ -182,13 +182,18 @@ def extract_text_from_pdf(file) -> str:
 def clean_text(text: str) -> str:
     text = re.sub(r"\s+", " ", text)
     text = re.sub(r"[^\w\s.!?,;:'\-]", "", text)
+    text = re.sub(r"\.{2,}", ".", text)  
     return text.strip()
 
 
 def get_sentences(text: str) -> list:
-    return [s.strip() for s in sent_tokenize(text) if len(s.split()) > 5]
+    return [s.strip() for s in sent_tokenize(text) if s.strip()]
 
-
+def search(self, query, k=1):
+    D = [[0.0]]
+    I = [[0]]
+    return D, I
+    
 @st.cache_data(show_spinner=False)
 def load_references(folder: str = "reference_pdfs") -> list:
     corpus = []

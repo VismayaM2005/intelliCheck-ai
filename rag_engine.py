@@ -85,6 +85,15 @@ class RAGEngine:
         distances, indices = self.index.search(q_emb, min(top_k, len(self.chunks)))
         return [self.chunks[i] for i in indices[0] if i < len(self.chunks)]
 
+    def search(self, query: str, k: int = 1):
+        if self.index is None or self.embedder is None or not self.chunks:
+            return np.array([]), np.array([])
+
+        q_emb = self.embedder.encode([query], show_progress_bar=False)
+        q_emb = np.array(q_emb, dtype="float32")
+        distances, indices = self.index.search(q_emb, min(k, len(self.chunks)))
+        return distances, indices
+
 
 # ──────────────────────────────────────────────
 # LLM GENERATOR (local flan-t5)
